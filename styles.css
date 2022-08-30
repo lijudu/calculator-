@@ -79,3 +79,7 @@
 html * {
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.clear:active, .delete:active, .divide:active, .seven:active, .eight:active, .nine:active, .multiply:active, .four:active, .five:active, .six:active, .subtract:active, .one:active, .two:active, .three:active, .add:active, .zero:active, .decimal:active, .equal:active {
+    transform: translateY(2px);
+}
