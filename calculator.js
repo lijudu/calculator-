@@ -9,8 +9,8 @@ let value = document.getElementById("value")
 
 // store number into value "a" or value "b" 
 let numbSelected = 0
-var a = ""
-var b = ""
+let a = ""
+let b = ""
 
 numbers.forEach(number => number.addEventListener('click', showNumber));
 
@@ -35,8 +35,25 @@ let divideValue = (a, b) => a / b;
 
 // create operate function that takes 2 numbers then calls above functions
 // add = 1, subtract = 2, multiply = 3, divide = 4
-const operatorSelected = 0 
-// when click operand, change operatorSelected to 1,2,3,4 ********
+// when click operand, change operatorSelected to 1,2,3,4 
+let operatorSelected = 0 
+
+operators.forEach(operator => operator.addEventListener('click', selectOperand));
+
+function selectOperand(e){
+    let clickedOperand = e.target.textContent
+    if (clickedOperand == "+") {
+        operatorSelected = 1
+    } else if (clickedOperand == "-") {
+        operatorSelected = 2
+    } else if (clickedOperand == "*") {
+        operatorSelected = 3
+    } else if (clickedOperand == "/") {
+        operatorSelected = 4
+    };
+    console.log(operatorSelected);
+};
+
 switch (operatorSelected) {
     case 1:
         addValue(a,b);
