@@ -106,4 +106,14 @@ function operate() {
 // 12 + 7 - 5 * 3 = 42 (should not need to wait for equal...)
 
 // all clear button 
+allClear.addEventListener('click', clearCalculator)
 
+function clearCalculator() {
+    value.innerText = ""
+    numbSelected = 0
+    a = ""
+    b = ""
+    console.log(a)
+    console.log(b)
+    console.log(numbSelected)
+};
