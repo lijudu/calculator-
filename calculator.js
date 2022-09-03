@@ -15,8 +15,6 @@ let b = ""
 numbers.forEach(number => number.addEventListener('click', showNumber));
 
 function showNumber(e){
-    // value.innerText = e.target.textContent
-    // numbSelected++
     if (numbSelected == 0) {
         a += e.target.textContent
         parseFloat(a)
@@ -102,8 +100,6 @@ function operate() {
 
 };
 
-// decimal point do a (if calculatedValue =/= whole digit) then show up to 10 decimal paces
-// 12 + 7 - 5 * 3 = 42 (should not need to wait for equal...)
 
 // all clear button 
 allClear.addEventListener('click', clearCalculator)
@@ -113,7 +109,32 @@ function clearCalculator() {
     numbSelected = 0
     a = ""
     b = ""
-    console.log(a)
-    console.log(b)
-    console.log(numbSelected)
+    hasDecimalValueA = false;
+    hasDecimalValueB = false; 
+    console.log("cleared value of a=" + a)
+    console.log("cleared value of b=" + b)
+    console.log("new value numbSelected= " + numbSelected)
 };
+
+// decimal point do a (if calculatedValue =/= whole digit) then show up to 10 decimal paces
+decimal.addEventListener('click', addDecimal)
+let hasDecimalValueA = false
+let hasDecimalValueB = false
+
+function addDecimal(e){
+    if (hasDecimalValueA == false && numbSelected == 0) {
+        a += e.target.textContent
+        value.innerText = a; 
+        hasDecimalValueA = true; 
+        console.log("decimal value of a=" + a) 
+    } else if (hasDecimalValueB == false && numbSelected == 1) {
+        b += e.target.textContent
+        value.innerText = b; 
+        hasDecimalValueB = true; 
+        console.log("decimal value of b=" + b)   
+    } else if (hasDecimalValueA == true || hasDecimalValueB == true) {
+        return; 
+}
+};
+
+// 12 + 7 - 5 * 3 = 42 should be functional.
