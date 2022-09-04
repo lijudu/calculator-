@@ -100,7 +100,6 @@ function operate() {
 
 };
 
-
 // all clear button 
 allClear.addEventListener('click', clearCalculator)
 
@@ -116,7 +115,7 @@ function clearCalculator() {
     console.log("new value numbSelected= " + numbSelected)
 };
 
-// decimal point do a (if calculatedValue =/= whole digit) then show up to 10 decimal paces
+// decimal point do a (if calculatedValue =/= whole digit)
 decimal.addEventListener('click', addDecimal)
 let hasDecimalValueA = false
 let hasDecimalValueB = false
@@ -138,3 +137,26 @@ function addDecimal(e){
 };
 
 // 12 + 7 - 5 * 3 = 42 should be functional.
+
+// show up to 10 decimal places
+
+// backspace button 
+deleteNumb.addEventListener('click', backspace)
+let aString = ""
+let bString = ""
+
+function backspace() {
+    if (numbSelected == 0) {
+        let aString = a.toString(); 
+        a = aString.slice(0, aString.length - 1); 
+        value.innerText = a 
+        console.log("new value of delted a=" + a)
+        return a
+    } else if (numbSelected == 1) {
+        let bString = b.toString(); 
+        b = bString.slice(0, bString.length - 1); 
+        value.innerText = b 
+        console.log("new value of deleted b=" + b)
+        return b; 
+    }
+}
