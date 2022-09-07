@@ -38,50 +38,76 @@ let divideValue = (a, b) => (a / b);
 // add = 1, subtract = 2, multiply = 3, divide = 4
 // when click operand, change operatorSelected to 1,2,3,4 
 // value of "a" needs to wait until operator clicked, then can be stored value b = (more than two digits)
+// 12 + 7 - 5 * 3 = 42 should be functional.
 let operatorSelected = 0
 let calculatedValue = 0 
+let secondClick = false
 
 operators.forEach(operator => operator.addEventListener('click', selectOperator));
 
+
 function selectOperator(e){
-    let clickedOperator = e.target.textContent
-    if (clickedOperator== "+") {
-        operatorSelected = 1
-    } else if (clickedOperator == "-") {
-        operatorSelected = 2
-    } else if (clickedOperator == "*") {
-        operatorSelected = 3
-    } else if (clickedOperator == "/") {
-        operatorSelected = 4
-    };
-    numbSelected = 1;
-    console.log(operatorSelected);
+    if (secondClick == false) {
+        let clickedOperator = e.target.textContent
+        if (clickedOperator== "+") {
+            operatorSelected = 1
+        } else if (clickedOperator == "-") {
+            operatorSelected = 2
+        } else if (clickedOperator == "*") {
+            operatorSelected = 3
+        } else if (clickedOperator == "/") {
+            operatorSelected = 4
+        };
+        numbSelected = 1
+        secondClick = true
+    } else if (secondClick == true) {
+        equalOperate()
+        let clickedOperator = e.target.textContent
+        if (clickedOperator== "+") {
+            operatorSelected = 1
+        } else if (clickedOperator == "-") {
+            operatorSelected = 2
+        } else if (clickedOperator == "*") {
+            operatorSelected = 3
+        } else if (clickedOperator == "/") {
+            operatorSelected = 4
+        };
+        numbSelected = 1
+    }
 };
 
-equal.addEventListener('click', operate)
+
+equal.addEventListener('click', equalOperate)
 
 function operate() {
     switch (operatorSelected) {
         case 1:
             calculatedValue = addValue(a,b);
-            console.log(calculatedValue);
+            a = calculatedValue; 
+            numbSelected = 1; 
+            b = ""
             break;
         case 2:
             calculatedValue = subtractValue(a,b);
-            console.log(calculatedValue);
+            a = calculatedValue; 
+            numbSelected = 1; 
+            b = ""
             break;
         case 3:
             calculatedValue = multiplyValue(a,b);
-            console.log(calculatedValue);
+            a = calculatedValue; 
+            numbSelected = 1; 
+            b = ""
             break;
         case 4:
             if (b == 0) {
-                a = ""
-                numbSelected = 0
-                b = ""
-                return value.innerText = "I cannot!"
+                calculatedValue = "I cannot!"
+                return clearCalculator()
             } else {
                 calculatedValue = divideValue(a,b)
+                a = calculatedValue; 
+                numbSelected = 1; 
+                b = ""
             }
             console.log(calculatedValue);
             break; 
@@ -90,14 +116,16 @@ function operate() {
             break;
     };
 
-    value.innerText = calculatedValue; 
-    a = calculatedValue; 
-    numbSelected = 1; 
-    b = ""
+};
 
-    console.log("new value a=" + a);
-    console.log("new value numbSelected " + numbSelected);  
+function showValue() {
+    value.innerText  = calculatedValue
+};
 
+
+function equalOperate() {
+    operate()
+    showValue()
 };
 
 // all clear button 
@@ -110,9 +138,6 @@ function clearCalculator() {
     b = ""
     hasDecimalValueA = false;
     hasDecimalValueB = false; 
-    console.log("cleared value of a=" + a)
-    console.log("cleared value of b=" + b)
-    console.log("new value numbSelected= " + numbSelected)
 };
 
 // decimal point do a (if calculatedValue =/= whole digit)
@@ -136,10 +161,6 @@ function addDecimal(e){
 }
 };
 
-// 12 + 7 - 5 * 3 = 42 should be functional.
-
-// show up to 10 decimal places
-
 // backspace button 
 deleteNumb.addEventListener('click', backspace)
 let aString = ""
@@ -159,4 +180,12 @@ function backspace() {
         console.log("new value of deleted b=" + b)
         return b; 
     }
-}
+};
+
+// show up to 10 decimal places
+
+
+
+
+
+
