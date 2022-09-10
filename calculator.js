@@ -79,6 +79,7 @@ function selectOperator(e){
 
 equal.addEventListener('click', equalOperate)
 
+
 function operate() {
     switch (operatorSelected) {
         case 1:
@@ -102,14 +103,15 @@ function operate() {
         case 4:
             if (b == 0) {
                 calculatedValue = "I cannot!"
-                return clearCalculator()
-            } else {
-                calculatedValue = divideValue(a,b)
-                a = calculatedValue; 
+                disableBtn()
+                return 
+            } else if (b !== 0) {
+                calculatedValue = divideValue(a,b);
+                a = calculatedValue
                 numbSelected = 1; 
                 b = ""
+                secondClick = false
             }
-            console.log(calculatedValue);
             break; 
         default:
             console.log("default");
@@ -128,6 +130,26 @@ function equalOperate() {
     showValue()
 };
 
+function disableBtn() {
+    document.getElementById("one").disabled = true;
+    document.getElementById("two").disabled = true;
+    document.getElementById("three").disabled = true;
+    document.getElementById("four").disabled = true;
+    document.getElementById("five").disabled = true;
+    document.getElementById("six").disabled = true;
+    document.getElementById("seven").disabled = true;
+    document.getElementById("eight").disabled = true;
+    document.getElementById("nine").disabled = true;
+    document.getElementById("zero").disabled = true;
+    document.getElementById("decimal").disabled = true;
+    document.getElementById("divide").disabled = true;
+    document.getElementById("multiply").disabled = true;
+    document.getElementById("subtract").disabled = true;
+    document.getElementById("add").disabled = true;
+    document.getElementById("equal").disabled = true;
+    document.getElementById("deleteBTN").disabled = true;
+}
+
 // all clear button 
 allClear.addEventListener('click', clearCalculator)
 
@@ -138,6 +160,24 @@ function clearCalculator() {
     b = ""
     hasDecimalValueA = false;
     hasDecimalValueB = false; 
+    secondClick = false
+    document.getElementById("one").disabled = false;
+    document.getElementById("two").disabled = false;
+    document.getElementById("three").disabled = false;
+    document.getElementById("four").disabled = false;
+    document.getElementById("five").disabled = false;
+    document.getElementById("six").disabled = false;
+    document.getElementById("seven").disabled = false;
+    document.getElementById("eight").disabled = false;
+    document.getElementById("nine").disabled = false;
+    document.getElementById("zero").disabled = false;
+    document.getElementById("decimal").disabled = false;
+    document.getElementById("divide").disabled = false;
+    document.getElementById("multiply").disabled = false;
+    document.getElementById("subtract").disabled = false;
+    document.getElementById("add").disabled = false;
+    document.getElementById("equal").disabled = false;
+    document.getElementById("deleteBTN").disabled = false;
 };
 
 // decimal point do a (if calculatedValue =/= whole digit)
@@ -182,7 +222,11 @@ function backspace() {
     }
 };
 
+
 // show up to 10 decimal places
+// add keyboard support
+// maybe put in icons instead of keys? make it look nicer 
+// clean up code 
 
 
 
