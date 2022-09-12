@@ -16,15 +16,29 @@ numbers.forEach(number => number.addEventListener('click', showNumber));
 
 function showNumber(e){
     if (numbSelected == 0) {
-        a += e.target.textContent
-        parseFloat(a)
-        value.innerText = a
-        console.log("value of a= " + a); 
+        if (a.length < 12) {
+            a += e.target.textContent
+            parseFloat(a)
+            value.innerText = a
+            console.log("value of a= " + a); 
+            return(a) 
+        }
+        // a += e.target.textContent
+        // parseFloat(a)
+        // value.innerText = a
+        // console.log("value of a= " + a); 
     } else if (numbSelected == 1){
-        b += e.target.textContent
-        parseFloat(b)
-        value.innerText = b
-        console.log("value of b= " + b);
+        if (b.length < 12 ){
+            b += e.target.textContent
+            parseFloat(b)
+            value.innerText = b
+            console.log("value of b= " + b);
+            return(b)
+        }
+        // b += e.target.textContent
+        // parseFloat(b)
+        // value.innerText = b
+        // console.log("value of b= " + b);
     };
 };
 
