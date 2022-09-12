@@ -121,7 +121,7 @@ function operate() {
 };
 
 function showValue() {
-    value.innerText  = calculatedValue
+    value.innerText  = +calculatedValue.toFixed(10)
 };
 
 
@@ -223,7 +223,7 @@ function backspace() {
 };
 
 
-// show up to 10 decimal places
+// show up to 12 digits
 // add keyboard support
 // maybe put in icons instead of keys? make it look nicer 
 // clean up code 
