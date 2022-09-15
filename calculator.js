@@ -20,7 +20,6 @@ function showNumber(e){
             a += e.target.textContent
             parseFloat(a)
             value.innerText = a
-            console.log("value of a= " + a); 
             return(a) 
         }
         // a += e.target.textContent
@@ -32,7 +31,6 @@ function showNumber(e){
             b += e.target.textContent
             parseFloat(b)
             value.innerText = b
-            console.log("value of b= " + b);
             return(b)
         }
         // b += e.target.textContent
@@ -54,7 +52,7 @@ let divideValue = (a, b) => (a / b);
 // value of "a" needs to wait until operator clicked, then can be stored value b = (more than two digits)
 // 12 + 7 - 5 * 3 = 42 should be functional.
 let operatorSelected = 0
-let calculatedValue = 0 
+let calculatedValue = ""
 let secondClick = false
 
 operators.forEach(operator => operator.addEventListener('click', selectOperator));
@@ -73,8 +71,11 @@ function selectOperator(e){
             operatorSelected = 4
         };
         numbSelected = 1
-        secondClick = true
-    } else if (secondClick == true) {
+        secondClick = true        
+        console.log(operatorSelected)
+        console.log("secondClick after dividing value a= " + a)
+        console.log("secondClick after dividing value b= " + a)
+    } else if (secondClick == true & a !== "" & b!== "") {
         equalOperate()
         let clickedOperator = e.target.textContent
         if (clickedOperator== "+") {
@@ -87,7 +88,11 @@ function selectOperator(e){
             operatorSelected = 4
         };
         numbSelected = 1
+    } else if (secondClick == true & a == "" & b == "") {
+        console.log("do nothing")
+        console.log(operatorSelected)
     }
+    console.log(secondClick)
 };
 
 
@@ -113,6 +118,7 @@ function operate() {
             a = calculatedValue; 
             numbSelected = 1; 
             b = ""
+            console.log("multiplly value of a=" + a)
             break;
         case 4:
             if (b == 0) {
@@ -124,24 +130,29 @@ function operate() {
                 a = calculatedValue
                 numbSelected = 1; 
                 b = ""
-                secondClick = false
+                // secondClick = false
             }
             break; 
         default:
             console.log("default");
             break;
     };
-
+    console.log("value of a= " + a)
+    console.log("value of b= " + b)
 };
 
 function showValue() {
-    value.innerText  = +calculatedValue.toFixed(10)
+    value.innerText = calculatedValue
 };
 
 
 function equalOperate() {
-    operate()
-    showValue()
+    if (a == "" & b == "") {
+        console.log("DO NOTHING!")
+    } else {
+        operate()
+        showValue()
+    }
 };
 
 function disableBtn() {
@@ -241,9 +252,3 @@ function backspace() {
 // add keyboard support
 // maybe put in icons instead of keys? make it look nicer 
 // clean up code 
-
-
-
-
-
-
