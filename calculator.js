@@ -59,7 +59,7 @@ operators.forEach(operator => operator.addEventListener('click', selectOperator)
 
 
 function selectOperator(e){
-    if (secondClick == false) {
+    if (secondClick == false && a !== "") {
         let clickedOperator = e.target.textContent
         if (clickedOperator== "+") {
             operatorSelected = 1
@@ -88,7 +88,7 @@ function selectOperator(e){
             operatorSelected = 4
         };
         numbSelected = 1
-    } else if (secondClick == true & a == "" & b == "") {
+    } else if (secondClick == true && a == "" && b == "") {
         console.log("do nothing")
         console.log(operatorSelected)
     }
