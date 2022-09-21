@@ -22,7 +22,7 @@ function showNumber(e){
             parseFloat(a)
             value.innerText = a
             return Number(a)
-        }
+        } 
     } else if (numbSelected == 1){
         if (b.length < 12 ){
             b += e.target.textContent
@@ -40,10 +40,7 @@ let multiplyValue = (a, b) => a * b;
 let divideValue = (a, b) => (a / b); 
 
 // create operate function that takes 2 numbers then calls above functions
-// add = 1, subtract = 2, multiply = 3, divide = 4
-// when click operand, change operatorSelected to 1,2,3,4 
-// value of "a" needs to wait until operator clicked, then can be stored value b = (more than two digits)
-// 12 + 7 - 5 * 3 = 42 should be functional.
+// 12 + 7 - 5 * 3 = 42 should be functional
 let operatorSelected = 0
 let calculatedValue = ""
 let secondClick = false
@@ -65,8 +62,7 @@ function selectOperator(e){
         };
         numbSelected = 1
         secondClick = true        
-        console.log("secondClick after dividing value a= " + a)
-        console.log("secondClick after dividing value b= " + b)
+
     } else if (secondClick == true && a !== "") {
         equalOperate()
         let clickedOperator = e.target.textContent
@@ -80,12 +76,7 @@ function selectOperator(e){
             operatorSelected = 4
         };
         numbSelected = 1
-        // equalOperate()
-        console.log("is tis zero a?" + a)
-    } else {
-        console.log("do nothing")
-        console.log("crazy value a= " + a)
-    }
+    };
 };
 
 
@@ -112,10 +103,7 @@ function operate() {
                 a = calculatedValue; 
                 numbSelected = 1; 
                 b = ""
-            } else if (b == "" && secondClick == true) {
-                console.log("pls get here")
-            } 
-            
+            };
             break;
         case 4:
             if (b == 0) {
@@ -127,20 +115,17 @@ function operate() {
                 a = calculatedValue
                 numbSelected = 1; 
                 b = ""
-                // secondClick = false
-            }
+            };
             break; 
         default:
             a = ""
             console.log("default");
             break;
     };
-    console.log("new value a= " + a)
-    console.log("value of b shouuld be nothing = " + b)
-    console.log("numbselected= " + numbSelected)
-    console.log("secondClick = " + secondClick)
+
 };
 
+// show exponential if digits > 12
 function showValue() {
     let finalValue = ""
     if (calculatedValue == "I cannot!") {
@@ -149,11 +134,10 @@ function showValue() {
         value.innerText = calculatedValue
         console.log("whole number only!")
     } else {
-        finalValue = +calculatedValue.toFixed(10)
+        finalValue = +calculatedValue.toFixed(5)
         value.innerText = finalValue
-        console.log("final value!")
-    }
-    // value.innerText = calculatedValue
+        console.log("Decimal final value!" )
+    };
 
 };
 
@@ -161,9 +145,7 @@ function showValue() {
 function equalOperate() {
     if (b == "" & a == "") {
         console.log("DO NOTHING!")
-        console.log("a is somethign but pressed equal so a=" + a)
     } else if (secondClick == true & b !== "") {
-        console.log("equal value a= " + a)
         operate()
         showValue()
     }
@@ -229,12 +211,10 @@ function addDecimal(e){
         a += e.target.textContent
         value.innerText = a; 
         hasDecimalValueA = true; 
-        console.log("decimal value of a=" + a) 
     } else if (hasDecimalValueB == false && numbSelected == 1) {
         b += e.target.textContent
         value.innerText = b; 
-        hasDecimalValueB = true; 
-        console.log("decimal value of b=" + b)   
+        hasDecimalValueB = true;  
     } else if (hasDecimalValueA == true || hasDecimalValueB == true) {
         return; 
 }
@@ -250,18 +230,16 @@ function backspace() {
         let aString = a.toString(); 
         a = aString.slice(0, aString.length - 1); 
         value.innerText = a 
-        console.log("new value of delted a=" + a)
         return a
     } else if (numbSelected == 1) {
         let bString = b.toString(); 
         b = bString.slice(0, bString.length - 1); 
         value.innerText = b 
-        console.log("new value of deleted b=" + b)
         return b; 
-    }
+    };
 };
 
-// exponentials, baby!
 // add keyboard support
+// exponential numbers 
 // maybe put in icons instead of keys? make it look nicer 
 // clean up code 
